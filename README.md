@@ -12,7 +12,7 @@ Solr is most thoroughly tested with Jetty. Specifically, Jetty as bundled with S
 
 However, the default Jetty distributed with Solr (the "example" dir) is not at all locked down. Security is not a concern. One solution would be to start mucking with the Jetty configuration to layer in SSL, disallow different endpoints, enable authentication, etc. Unfortunately, once this starter "example" directory is laden with added configuration, it becomes harder to just upgrade Solr in-place. We can no longer easily "rip and replace" the example directory. Instead we need to replicate any configuration we need when upgrading.
 
-Rather, this approach proposes a clear seperation of concerns with a vanilla Jetty/Solr "example" default directory fronted by a robust and secure web server like Nginx. This lets users run Solr as they're used to (java -jar ... start.jar) without mucking with much and allows tight control over security as needed.
+Rather, this approach allows a clear seperation of concerns with a vanilla Jetty/Solr "example" default directory fronted by a robust and secure web server like Nginx. This lets users run Solr as they're used to (java -jar ... start.jar) without mucking with much and allows tight control over security as needed.
 
 ### General Solr Deployment Approach
 
@@ -44,3 +44,7 @@ Double check you can't take disallowed actions like updated documents and the li
 ```
 ssh -L8983:localhost:8983 your.solr.com 
 ```
+
+### TODO
+1. Demonstrate basic auth for update handlers and /solr 
+2. Demonstrate SSL
