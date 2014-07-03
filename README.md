@@ -18,17 +18,15 @@ Rather, this approach proposes a clear seperation of concerns with a vanilla Jet
 
 Our general approach to deploying Solr is
 
-1. Start Solr with Jetty out of the unmodified default 'example' directory. Something like
+#### 1. Start Solr with Jetty out of the unmodified default 'example' directory. Something like
 
 ```
 java -jar -Dsolr.solr.home=/path/to/solr/confs -Djetty.host=127.0.0.1 start.jar
 ```
 
-(even though this is called "example" its really a basic starter Jetty install for Solr)
+#### 2. Take the solr.conf from this repo and proxy with your info as comments dictate in the solr.conf file in this repo
 
-2. Take the solr.conf from this repo and proxy with your info as comments dictate in the solr.conf file in this repo
-
-3. Use Nginx with modified conf files from this repo to proxy Solr to the rest of the world
+#### 3. Use Nginx with modified conf files from this repo to proxy Solr to the rest of the world
 
 On Ubuntu, this looks like:
 ```
@@ -37,9 +35,11 @@ sudo cp solr_proxy.conf /etc/nginx/conf.d/
 sudo /etc/init.d/nginx restart
 ```
 
-4. Confirm you can only access specific handlers with your browser
+#### 4. Confirm you can only access specific handlers with your browser.
 
-5. SSH tunnel into the box to access solr admin, etc
+Double check you can't take disallowed actions like updated documents and the like.
+
+#### 5. SSH tunnel into the box to access solr admin, etc
 
 ```
 ssh -L8983:localhost:8983 your.solr.com 
